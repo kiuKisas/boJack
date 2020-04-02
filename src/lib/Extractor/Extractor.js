@@ -47,11 +47,12 @@ class Extractor {
     return allQueries(pathBases.queries, [], dataFile.stringQueries)
       .then(queries => {
         const promisesByVariables = dataFile.arrayVariables.map(variables => {
+          return queries.map(query => {
           // see to make it functionnal
-          return this.client.request(query, variables).then(resul)
-          // fetch Query
+            return this.client.request(query, variables).then(resul)
           // apply callback by queries
           // apply assets callbacks / inner callbacks
+          })
         })
         // Ici, on a par query ready
         return Promise.all(promisesByVariables)
