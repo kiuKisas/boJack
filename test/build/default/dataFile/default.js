@@ -19,16 +19,18 @@ var defaultDataFile = {
   save: ['payload'],
   stringQueries: [],
   arrayVariables: [{}],
-  payload: _payload.payload,
-  callbacks: _callbacks.callbacks
+  payload: _payload.payload // callbacks
+
 };
 
 var assignDataFile = function assignDataFile(dataFileSrc) {
   var ret = Object.assign({}, defaultDataFile, dataFileSrc);
   var newPayload = Object.assign({}, _payload.payload, dataFileSrc.payload);
   var newCallbacks = Object.assign({}, _callbacks.callbacks, dataFileSrc.callbacks);
+  console.log("callbacks: " + JSON.stringify(_callbacks.callbacks, null, 2));
+  console.log("newCallbacks" + JSON.stringify(newCallbacks, null, 2));
+  ret.callbacks = newCallbacks;
   ret.payload = newPayload;
-  ret.newCallbacks = newCallbacks;
   return ret;
 };
 

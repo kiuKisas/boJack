@@ -1,0 +1,19 @@
+query Pokemons($first: Int!) {
+  pokemons(first: $first) {
+    name
+    number
+    name
+    attacks {
+      special {
+        name
+        type
+        damage
+      }
+    }
+    evolutionRequirements {
+      name
+      amount
+      name
+    }
+  }
+}

@@ -1,0 +1,14 @@
+query Pikachu {
+  pokemon(name: "mew" ) {
+    id
+    number
+    name
+    attacks {
+      special {
+        name
+        type
+        damage
+      }
+    }
+  }
+}

@@ -1,15 +1,5 @@
-query Pikachu {
-  pokemon(name: "Pikachu") {
-    id
-    number
-    name
-    attacks {
-      special {
-        name
-        type
-        damage
-      }
-    }
+query PokeEvolve($name: String) {
+  pokemon(name: $name) {
     evolutions {
       id
       number

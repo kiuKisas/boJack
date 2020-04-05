@@ -58,7 +58,7 @@ var Extractor = /*#__PURE__*/function () {
 
           return _this.download(dataFile, pathBases);
         })).then(function (body) {
-          _printers.boPrinters.success('Extractor :: DONE');
+          _printers.boPrinters.success("Extractor :: DONE");
 
           resolve(body);
         })["catch"](function (e) {
@@ -67,18 +67,6 @@ var Extractor = /*#__PURE__*/function () {
           reject(e);
         });
       });
-    } // read files Queries and merge it after stringQueries
-
-  }, {
-    key: "allQueries",
-    value: function allQueries(pathBasesQueries, stringQueries, filesQueries) {
-      var queryPromises = dataFile.stringQueries.map(function (stringQuery) {
-        return _helpers.boExtractHelpers.readQuery(pathBases.queries, stringQuery);
-      }); // is it working ?
-
-      return Promise.all(queryPromises).then(function (newQueries) {
-        return Array.concat(stringQueries, newQueries);
-      });
     }
   }, {
     key: "download",
@@ -86,15 +74,31 @@ var Extractor = /*#__PURE__*/function () {
       var _this2 = this;
 
       var dataFile = (0, _default2.assignDataFile)(dataFileSrc);
-      return allQueries(pathBases.queries, [], dataFile.stringQueries).then(function (queries) {
+      return _helpers.boExtractHelpers.allQueries(pathBases.queries, [], dataFile.stringQueries).then(function (queries) {
         var promisesByVariables = dataFile.arrayVariables.map(function (variables) {
-          // see to make it functionnal
-          return _this2.client.request(query, variables).then(resul); // fetch Query
-          // apply callback by queries
-          // apply assets callbacks / inner callbacks
-        }); // Ici, on a par query ready
+          var promisesQueries = queries.map(function (query) {
+            // TODO: variables callback ?
+            return _this2.client.request(query, variables).then(function (dataQuery) {
+              var dataCallbacked = _helpers.boExtractHelpers.callbacksByKeys(dataQuery, dataFile.callbacks.byQueries);
 
-        return Promise.all(promisesByVariables);
+              return dataCallbacked; // So... will need to go deeper baby..
+              // apply assets callbacks / inner callbacks
+            });
+          });
+          return Promise.all(promisesQueries).then(function (dataArrays) {
+            // TODO: x?? :: option :: merge :: true/false
+            function ff(acc, data) {
+              return Object.assign(acc, data);
+            }
+
+            var data = dataArrays.reduce(ff, {});
+            console.log('youhou');
+            console.log(dataFile.callbacks.global);
+            var finalData = dataFile.callbacks.global(data);
+            return _helpers.boExtractHelpers.saveFile(finalData, dataFile.payload, pathBases.payload);
+          });
+          return Promise.all(promisesByVariables);
+        });
       })["catch"](function (e) {
         _printers.boPrinters.error(e);
       });

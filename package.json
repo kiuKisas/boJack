@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npx babel ./src -d build",
     "start": "npx babel src --watch -d build",
-    "test": "npx babel ./src test//src/queries ./test/src -d test/build && && cp -rf test/src/queries test/build/ && node test/build/test.js"
+    "test": "npx babel ./src test/src/queries ./test/src -d test/build && cp -rf test/src/queries test/build/ && node test/build/test.js"
   },
   "dependencies": {
     "graphql-request": "^1.8.2",

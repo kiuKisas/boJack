@@ -1,0 +1,8 @@
+query Pokemons {
+  pokemons(first: 9) {
+    id
+    name
+    number
+    name
+  }
+}
