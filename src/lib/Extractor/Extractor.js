@@ -40,21 +40,19 @@ class Extractor {
           const promisesQueries = queries.map(query => {
             // TODO: variables callback ?
             return this.client.request(query, variables).then(dataQuery => {
-              const dataCallbacked = boExtractHelpers.callbacksByKeys(
+              const datasCallbacked = boExtractHelpers.callbacksByKeys(
                 dataQuery,
                 dataFile.callbacks.byQueries
               );
-              return dataCallbacked;
+              return datasCallbacked
               // So... will need to go deeper baby..
               // apply assets callbacks / inner callbacks
             });
           });
           return Promise.all(promisesQueries).then(dataArrays => {
             // TODO: x?? :: option :: merge :: true/false
-            function ff (acc, data) { return Object.assign(acc, data) }
-            const data = dataArrays.reduce(ff, {});
-            console.log('youhou')
-            console.log(dataFile.callbacks.global)
+            // function ff (acc, data) { return Object.assign(acc, data) }
+            const data = dataArrays.reduce(Object.assign, {});
             const finalData = dataFile.callbacks.global(data);
             return boExtractHelpers.saveFile(
               finalData,
@@ -70,42 +68,6 @@ class Extractor {
       });
   }
 
-  ttdownload(dataFileSrc, pathBases) {
-    return new Promise((resolve, reject) => {
-      const dataFile = assignDataFile(dataFileSrc);
-      const callbacks = dataFile.callbacks;
-      return boExtractHelpers
-        .readAllQueries(pathBases.queries, dataFile.stringQueries)
-        .then(queries => {
-          return Promise.all(
-            dataFile.arrayVariables.map(variables => {
-              return Promise.all(
-                queries.map(query => {
-                  return this.client.request(query, variables);
-                })
-              ).then(arrayDatas => {
-                // TODO: more flexible naming
-                const name = variables.locale
-                  ? variables.locale + dataFile.payload.filename
-                  : dataFile.payload.filename;
-                const data = Object.assign({}, ...arrayDatas);
-                boCallbacks.execQueries(data, callbacks).then(newData => {
-                  const finalData = dataFile.callbacks.global(newData);
-                  boExtractHelpers
-                    .saveFiles(name, dataFile, pathBases, finalData)
-                    .then(res => {
-                      resolve(finalData);
-                    })
-                    .catch(e => {
-                      reject(e);
-                    });
-                });
-              });
-            })
-          );
-        });
-    });
-  }
 }
 
 export { Extractor };

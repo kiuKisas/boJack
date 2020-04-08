@@ -6,14 +6,17 @@
 
 import { payload } from './inner/payload'
 import { callbacks } from './inner/callbacks'
+import { assets } from './inner/assets'
 
 const defaultDataFile = {
   name: 'undefined',
-  save: ['payload'],
+  savePayloads: true,
+  uniq: false,
   stringQueries: [],
   arrayVariables: [{}],
-  payload
-  // callbacks
+  payload,
+  callbacks,
+  assets
 }
 
 const assignDataFile = dataFileSrc => {

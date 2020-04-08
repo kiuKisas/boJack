@@ -11,24 +11,16 @@ const boExtractHelpers = {
     boPrinters.info(`reading ${filepath}`);
     return boFiles.read(filepath);
   },
-  //TODO: delete
-  readAllQueries: (pathBaseQueries, queries) => {
-    return Promise.all(
-      queries.map(queryPath => {
-        return boExtractHelpers.readQuery(pathBaseQueries, queryPath);
-      })
-    );
-  },
   // TODO: delete but keyy the logic for payload type && source type
-  saveFiles: (name, dataFile, pathBases, data) => {
-    return Promise.all(
-      dataFile.save.map(mode => {
-        return boExtractModes.call(mode).then(modeCallback => {
-          return modeCallback(name, dataFile, pathBases, JSON.stringify(data));
-        });
-      })
-    );
-  },
+//  saveFiles: (name, dataFile, pathBases, data) => {
+//    return Promise.all(
+//      dataFile.save.map(mode => {
+//        return boExtractModes.call(mode).then(modeCallback => {
+//          return modeCallback(name, dataFile, pathBases, JSON.stringify(data));
+//        });
+//      })
+//    );
+//  },
   saveFile: (data, dataPayload, pathBase) => {
     // Your callback, your responsability
     const filename = dataPayload.nameCallback(dataPayload, data)
@@ -46,9 +38,9 @@ const boExtractHelpers = {
       });
     })
   },
+  // More general.. should move to root helper
   callbacksByKeys(data, callbacks) {
     // Your callbacks is your responsability.
-    console.log(callbacks)
     const keys = Object.keys(data);
     const cbKeys = Object.keys(callbacks)
     const dataCallbacked = {};
