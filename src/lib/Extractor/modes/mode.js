@@ -1,6 +1,17 @@
 import path from 'path'
 import { boFiles } from '../../../utils/files.js'
 
+  // TODO: delete but keyy the logic for payload type && source type
+//  saveFiles: (name, dataFile, pathBases, data) => {
+//    return Promise.all(
+//      dataFile.save.map(mode => {
+//        return boExtractModes.call(mode).then(modeCallback => {
+//          return modeCallback(name, dataFile, pathBases, JSON.stringify(data));
+//        });
+//      })
+//    );
+//  },
+//
 // should return a Promise
 const callbackModes = {
   payload: (name, dataFile, pathBases, data) => {
