@@ -14,7 +14,7 @@ const boDig = {
   //}
 };
 
-// TODO: If needed, merge boDig with user callbacks
+// TODO: merge boDig with user callbacks
 // TODO: Multi-thread :: should we add a mulitthread option for parsing ? 
 const parser = (data, callbacks) => {
   switch (data) {
@@ -35,7 +35,7 @@ const defaultCallbacks = { object: {} };
 
 const boRecDeeper = {
   deeper: (data, callbacks = defaultCallbacks) => {
-    return parser(data);
+    return parser(data, callbacks);
   }
 };
 
