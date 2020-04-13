@@ -2,7 +2,6 @@ import path from "path";
 
 import { boPrinters } from "../../../utils/printers.js";
 import { boHelpers } from "../../../utils/helpers.js";
-import { boExtractModes } from "../modes/mode.js";
 import { boFiles } from "../../../utils/files.js";
 
 const boExtractHelpers = {
@@ -11,16 +10,6 @@ const boExtractHelpers = {
     boPrinters.info(`reading ${filepath}`);
     return boFiles.read(filepath);
   },
-  // TODO: delete but keyy the logic for payload type && source type
-//  saveFiles: (name, dataFile, pathBases, data) => {
-//    return Promise.all(
-//      dataFile.save.map(mode => {
-//        return boExtractModes.call(mode).then(modeCallback => {
-//          return modeCallback(name, dataFile, pathBases, JSON.stringify(data));
-//        });
-//      })
-//    );
-//  },
   saveFile: (data, dataPayload, pathBase) => {
     // Your callback, your responsability
     const filename = dataPayload.nameCallback(dataPayload, data)
@@ -39,7 +28,12 @@ const boExtractHelpers = {
     })
   },
   // More general.. should move to root helper
-  callbacksByKeys(data, callbacks) {
+  callbackByKey(key, data, callbacks = {}, cbKeys = []) {
+    if (cbKeys.includes(key)) {
+      return callbacks[key](data);
+    } else return data
+  },
+  callbacksByKeys(data, callbacks = {}) {
     // Your callbacks is your responsability.
     const keys = Object.keys(data);
     const cbKeys = Object.keys(callbacks)
@@ -49,7 +43,7 @@ const boExtractHelpers = {
         dataCallbacked[key] = callbacks[key](data[key]);
       }
     });
-    // Board effect, if we need a clean dataQuery, don't hesitate to use:
+    // Board effect, if we need a clean data, don't hesitate to use:
     // return Object.assign({}, data, dataCallbacked)
     // Cheers :)
     return Object.assign(data, dataCallbacked);
