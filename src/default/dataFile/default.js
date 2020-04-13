@@ -4,30 +4,26 @@
 // Content all data and options for one payload file
 //
 
-import { payload } from './inner/payload'
-import { callbacks } from './inner/callbacks'
-import { assets } from './inner/assets'
+import { payload } from "./inner/payload";
+import { assignCallbacks } from "./inner/callbacks";
 
 const defaultDataFile = {
-  name: 'undefined',
-  savePayloads: true,
-  uniq: false,
+  name: "undefined",
+  // Queries to Fetch
   stringQueries: [],
-  arrayVariables: [{}],
-  payload,
-  callbacks,
-  assets
-}
+  // Variables for each queries
+  arrayVariables: [{}]
+  // payload,
+  // callbacks,
+};
 
 const assignDataFile = dataFileSrc => {
-  const ret = Object.assign({}, defaultDataFile, dataFileSrc)
-  const newPayload = Object.assign({}, payload, dataFileSrc.payload)
-  const newCallbacks = Object.assign({}, callbacks, dataFileSrc.callbacks)
-  console.log("callbacks: " + JSON.stringify(callbacks, null, 2))
-  console.log("newCallbacks" + JSON.stringify(newCallbacks, null, 2))
-  ret.callbacks = newCallbacks
-  ret.payload = newPayload
-  return ret
-}
+  const newPayload = Object.assign({}, payload, dataFileSrc.payload);
+  const newCallbacks = assignCallbacks(dataFileSrc.callbacks);
+  return Object.assign({}, defaultDataFile, dataFileSrc, {
+    callbacks: newCallbacks,
+    payload: newPayload
+  });
+};
 
-export { assignDataFile }
+export { assignDataFile };

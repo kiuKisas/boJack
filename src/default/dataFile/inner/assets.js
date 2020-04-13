@@ -1,17 +1,25 @@
 const assets = {
-  key: 'url',
+  // key detection, containing the asset url
+  key: "url",
   download: true,
+  // replace url by
+  // Example:
+  //   https://dev.io/path/script.js
+  //     -->
+  //   path/to/assets/path/script.js
+  //
   replaceUrl: true,
   keepPath: true,
-  skipMinify: ['png'],
+  // not implemented yet
+  minify: ["js", "svg"],
   paths: {
     // default './'
-    js: './js/'
+    js: "./js/"
   },
-  callbacks: {
-    default: () , 
-    extensions: {}
+  extensions: {
+    js: (url, data) => { url, data },
+    svg: (url, data) => { url, data }
   }
-}
+};
 
-export { assets }
+export { assets };
