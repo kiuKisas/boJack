@@ -1,17 +1,18 @@
 {
-  "name": "boJack",
+  "name": "bo-jack",
   "version": "1.0.0",
   "description": "A GraphGQL Server Side Downloader for Jamstack",
-  "main": "build/index.js",
-  "module": "build/index.js",
+  "main": "lib/index.js",
   "author": "kiuKisas",
   "license": "MIT",
   "scripts": {
-    "build": "npx babel ./src -d build",
-    "start": "npx babel src --watch -d build",
-    "test": "npx babel ./src test/src/queries ./test/src -d test/build && cp -rf test/src/queries test/build/ && node test/build/test.js"
+    "build": "babel lib -d dist",
+    "start": "npm run build && nodemon dist/index.js",
+    "serve": "npm run build && node dist/index.js",
+    "test": "npm run build && mocha --require @babel/register"
   },
   "dependencies": {
+    "download": "^8.0.0",
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.3",
     "xa": "^2.3.0"
@@ -20,8 +21,20 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.10.1",
     "babel-plugin-graphql-tag": "^2.5.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
     "fs-extra": "^9.0.0",
+    "mocha": "^7.2.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
     "rm-local-modules": "^0.0.2"
   }
 }
