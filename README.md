@@ -1,21 +1,10 @@
 # BoJack
-A GraphQL Server Side Downloader from Jamstack
+A GraphQL Server Side Downloader for Jamstack.
 
-### Init
- --> Api Helper
- --> default config
- 
-### Launch
+BoJack aims to download payload/assets from GraphQL sources, with callbacks to edit data and caching them locally; targeting SSR generation in a jamstack fashion.
+
 ```
-bj.start([fileData])
-fileData :: see default/dataFile.js
+:poop: The current state of the project is shitty af, bad testing, options not implemented, no documentation, less or more bad code, and so on..
+:shower: I will start over in ReasonML, I'll clean up this mess once the new code will be there 
 ```
 
-### Callbacks
-callbacks are calls in this order:
-`byQueries` is ` { queryName: data => { return data } }`
-take the date from the given query
-`assets` is ` assetsData => { return assetsData}`
-all assets match data will be call with this fonction
-`global` is `(data) => { return data }`
-take all data and should return new formatted Data
