@@ -1,6 +1,6 @@
 {
-  "name": "bo-jack",
-  "version": "1.0.0",
+  "name": "bojack",
+  "version": "0.1.0",
   "description": "A GraphGQL Server Side Downloader for Jamstack",
   "main": "lib/index.js",
   "author": "kiuKisas",
@@ -15,6 +15,7 @@
     "download": "^8.0.0",
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.3",
+    "sharp": "^0.25.3",
     "xa": "^2.3.0"
   },
   "devDependencies": {
