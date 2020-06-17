@@ -1,5 +1,4 @@
-# BoJack
-![Node.js Package](https://github.com/kiuKisas/boJack/workflows/Node.js%20Package/badge.svg)
+# BoJack ![npm-publish](https://github.com/kiuKisas/boJack/workflows/npm-publish/badge.svg)
 A GraphQL Server Side Downloader for Jamstack.
 
 BoJack aims to download payload/assets from GraphQL sources, with callbacks to edit data and caching them locally; targeting SSR generation in a jamstack fashion.
