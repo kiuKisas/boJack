@@ -1,9 +1,10 @@
 {
   "name": "bojack",
-  "version": "0.1.1",
+  "version": "0.1.1-1",
   "description": "A GraphGQL Server Side Downloader for Jamstack",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": "kiuKisas",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "license": "MIT",
   "scripts": {
     "build": "babel lib -d dist",
