@@ -4,7 +4,6 @@
   "description": "A GraphGQL Server Side Downloader for Jamstack",
   "main": "dist/index.js",
   "author": "kiuKisas",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "license": "MIT",
   "scripts": {
     "build": "babel lib -d dist",
