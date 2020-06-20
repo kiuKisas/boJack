@@ -31,6 +31,15 @@ const fileDataSrcs = [
   }
 ]
 
+const globalData = {
+  name: 'Pikachu & Mewtwo',
+  stringQueries: ['pokemon.gql'],
+  arrayVariables,
+  payload: {
+    filename: 'pokeglobal',
+    save: ['all'],
+  }
+}
 const pokeDataSrcs = [
   {
     name: 'Merge Mew && 9 firsts pokemons',
@@ -73,6 +82,12 @@ describe('Test with Pokemon API', function () {
   })
   describe('Merge 9 firsts pokemons and Mew', function () {
     const test = boPoke.start(pokeDdataSrc)
+    it('should save one file', function () {
+      return true
+    })
+  })
+  describe('One file', function () {
+    const test = boPoke.start(globalData)
     it('should save one file', function () {
       return true
     })
