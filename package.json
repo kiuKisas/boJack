@@ -1,6 +1,6 @@
 {
   "name": "bojack",
-  "version": "0.1.4",
+  "version": "0.1.4-1",
   "description": "A GraphGQL Server Side Downloader for Jamstack",
   "main": "dist/index.js",
   "author": "kiuKisas",
@@ -9,7 +9,8 @@
     "build": "babel lib -d dist",
     "start": "npm run build && nodemon dist/index.js",
     "serve": "npm run build && node dist/index.js",
-    "test": "npm run build && mocha --require @babel/register"
+    "test": "npm run build && mocha --require @babel/register",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "download": "^8.0.0",
