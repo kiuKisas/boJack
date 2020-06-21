@@ -24,7 +24,7 @@ const fileDataSrcs = [
     arrayVariables,
     payload: {
       filename: 'pokemon-',
-      nameCallback: (payload, data) => {
+      nameCallback: (payload, _, data) => {
         return payload.filename + data.pokemon.number + payload.extension
       }
     }
@@ -54,7 +54,10 @@ const pokeDdataSrc = {
   name: 'Merge Mew && 9 firsts pokemons',
   stringQueries: ['starters.gql', 'mew.gql'],
   payload: {
-    filename: 'startersAndMew2'
+    filename: 'startersAndMew2',
+    nameCallback: (payload, data, variables) => {
+      return payload.filename + payload.extension
+    }
   },
   callbacks: {
     global: data => {
