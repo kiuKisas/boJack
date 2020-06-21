@@ -37,7 +37,7 @@ const globalData = {
   arrayVariables,
   payload: {
     filename: 'pokeglobal',
-    save: ['all'],
+    save: ['all']
   }
 }
 const pokeDataSrcs = [
@@ -69,9 +69,10 @@ const pokeDdataSrc = {
 describe('Test with Pokemon API', function () {
   const boPoke = new BoJack(pokeApi, config)
   describe('6 first pokemons, pikachu and mewtwo', function () {
-    const test = boPoke.start(fileDataSrcs)
-    it('should save 3 files', function () {
-      return true
+    const test = boPoke.start(fileDataSrcs).then(yo => {
+      it('should save 3 files', function () {
+        return true
+      })
     })
   })
   describe('9 firsts pokemons and Mew', function () {

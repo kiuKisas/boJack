@@ -5,7 +5,7 @@ BoJack aims to download payload/assets from GraphQL sources, with callbacks to e
 
 ## :warning: Hello there !
 
-:poop: The current state of the project is kind of a draft and shitty af, bad testing, options not implemented, no documentation, less or more bad code, and so on..
+:poop: The current state of the project is kind of a draft and shitty af, bad testing, options not implemented, no documentation, code to clean/refacto, and so on..
 
 
 :shower: I will start over in `ReasonML` and make sure to make it right.. Stay tuned :)  
