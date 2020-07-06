@@ -18,8 +18,13 @@ const dataSrc = {
   },
   assets: {
     key: 'image',
-    forceDownload: true,
     download: true,
+    save: {
+      file: {
+        keepUrlPath: true,
+        replaceUrl: true
+      }
+    }
   }
 }
 
