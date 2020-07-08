@@ -22,7 +22,8 @@ const dataSrc = {
     save: {
       file: {
         keepUrlPath: true,
-        replaceUrl: true
+        replaceUrl: true,
+        replaceCallback: async data => { return 'test/' + data }
       }
     }
   }
