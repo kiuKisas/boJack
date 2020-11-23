@@ -76,31 +76,31 @@ const pokeDdataSrc = {
   }
 }
 
-describe('Test with Pokemon API', function () {
-  const boPoke = new BoJack(pokeApi, config)
-  describe('6 first pokemons, pikachu and mewtwo', function () {
-    const test = boPoke.start(fileDataSrcs).then(yo => {
-      it('should save 3 files', function () {
-        return true
-      })
-    })
-  })
-  describe('9 firsts pokemons and Mew', function () {
-    const test = boPoke.start(pokeDataSrcs)
-    it('should save 1 file', function () {
-      return true
-    })
-  })
-  describe('Merge 9 firsts pokemons and Mew', function () {
-    const test = boPoke.start(pokeDdataSrc)
-    it('should save one file', function () {
-      return true
-    })
-  })
-  describe('One file', function () {
-    const test = boPoke.start(globalData)
-    it('should save one file', function () {
-      return true
-    })
-  })
-})
+//describe('Test with Pokemon API', function () {
+//  const boPoke = new BoJack(pokeApi, config)
+//  describe('6 first pokemons, pikachu and mewtwo', function () {
+//    const test = boPoke.start(fileDataSrcs).then(yo => {
+//      it('should save 3 files', function () {
+//        return true
+//      })
+//    })
+//  })
+//  describe('9 firsts pokemons and Mew', function () {
+//    const test = boPoke.start(pokeDataSrcs)
+//    it('should save 1 file', function () {
+//      return true
+//    })
+//  })
+//  describe('Merge 9 firsts pokemons and Mew', function () {
+//    const test = boPoke.start(pokeDdataSrc)
+//    it('should save one file', function () {
+//      return true
+//    })
+//  })
+//  describe('One file', function () {
+//    const test = boPoke.start(globalData)
+//    it('should save one file', function () {
+//      return true
+//    })
+//  })
+//})
